@@ -10,6 +10,18 @@ if (!$conn)
 $nome=$_POST['nome'];
 $cognome=$_POST['cognome'];
 $squadra=$_POST['squadra'];
+function get_id_squadra($query)
+{
+    
+    while($row = mysqli_fetch_array($query))
+    {
+        $id=$row[0];
+        break;
+    }
+    return $id;
+}
+
+
 $sql="INSERT INTO test_calciatore(id,nome_calc,cognome_calc,id_squadra) VALUES (NULL,'$nome','$cognome',NULL)";
 $sql_squadra="SELECT * FROM squadre WHERE squadra='$squadra'";
 $query_squadra=mysqli_query($conn,$sql_squadra);
@@ -28,11 +40,7 @@ if(mysqli_fetch_array($query_squadra)==NULL)
     }
     $get_idsquadra="SELECT * FROM squadre WHERE squadra='$squadra'";
     $query_idsquadra=mysqli_query($conn,$get_idsquadra);
-    while($row = mysqli_fetch_array($query_idsquadra))
-    {
-        $id_squadra=$row[0];
-        break;
-    }
+    $id_squadra=get_id_squadra($query_idsquadra);
     echo "$id_squadra<br>";
     $update_idsquadra="UPDATE test_calciatore SET id_squadra=$id_squadra WHERE nome_calc='$nome' AND cognome_calc='$cognome'";
     if(mysqli_query($conn,$update_idsquadra))
@@ -41,6 +49,17 @@ if(mysqli_fetch_array($query_squadra)==NULL)
         echo "failed<br>"; 
 
 }
+else
+ {
+    $get_idsquadra="SELECT * FROM squadre WHERE squadra='$squadra'";
+    $query_idsquadra=mysqli_query($conn,$get_idsquadra);
+    $id_squadra=get_id_squadra($query_idsquadra);
+    $update_idsquadra="UPDATE test_calciatore SET id_squadra=$id_squadra WHERE nome_calc='$nome' AND cognome_calc='$cognome'";
+    if(mysqli_query($conn,$update_idsquadra))
+        echo "update riuscito2<br>";
+    else
+        echo "failed<br>"; 
+ }
 // $sql_squadra="INSERT INTO squadre(id,nome_squadra) VALUES (NULL,'$squadra')";
 // $sql_squadra="IF NOT EXISTS(SELECT * FROM squadre WHERE nome_squadra='$squadra') 
 // BEGIN INSERT INTO squadre(id,nome_squadra) VALUES (NULL,'$squadra') END";
