@@ -12,9 +12,6 @@
           <label for="cognome">Cognome:</label><br/>
           <input type="text" placeholder="cognome" name="cognome"/><br/>
 
-          <label for="data">Data nascita:</label><br/>
-          <input type="date" placeholder="data" name="data" /><br/>
-
           <label for="numero_maglia">Numero maglia:</label><br/>
           <input type="number" placeholder="numero_maglia" name="numero_maglia"/><br/>
 
@@ -43,6 +40,49 @@
           <input type="squadra" placeholder="squadra" name="squadra"/><br/>
 
           <input type="submit" value="Submit" />
+        </form>
+      </div>
+      <div id="form">
+        <h2>Lista giocatori</h2>
+        <?php
+          function query_result($conn,$sql)
+          {
+             if ($query=mysqli_query($conn, $sql))
+             {
+                //echo $sql."<br>";
+                //$query=mysqli_query($conn,$sql);
+                return $query;
+             }
+             else
+             {
+                echo "Errore: " . $sql . ":_:" . mysqli_error($conn)."<br>";
+             }
+          }
+          $sql = "SELECT * FROM tab_calciatore LEFT OUTER JOIN tab_squadra ON tab_calciatore.id_squadra = tab_squadra.id";
+          $risultati = query_result($conn, $sql);
+
+          echo '<table id="wow">';
+          echo '<tr>
+          <th class="header">ID</th>
+          <th class="header">Nome</th>
+          <th class="header">Cognome</th>
+          <th class="header">Numero maglia</th>
+          <th class="header">Squadra</th>
+          </tr>';
+
+          while ($riga = mysqli_fetch_array($risultati, MYSQLI_NUM))
+          {
+              echo '<tr>';
+              echo '<td>' . $riga[0] . '</td>';
+              echo '<td>' . $riga[1] . '</td>';
+              echo '<td>' . $riga[2] . '</td>';
+              echo '<td>' . $riga[3] . '</td>';
+              echo '<td>' . $riga[4] . '</td>';
+              echo '</tr>';
+          }
+          echo '</table>';
+          mysqli_close($conn);
+        ?>
         </form>
       </div>
     </div>
