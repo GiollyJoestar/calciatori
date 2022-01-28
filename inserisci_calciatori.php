@@ -7,9 +7,9 @@ $id_squadra=1;
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn)
     die('Could not connect');
-$nome=$_POST['nome'];
-$cognome=$_POST['cognome'];
-$squadra=$_POST['squadra'];
+$nome=strtolower($_POST['nome']);
+$cognome=strtolower($_POST['cognome']);
+$squadra=strtolower($_POST['squadra']);
 function get_id_squadra($query)
 {
     
