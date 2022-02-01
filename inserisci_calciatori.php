@@ -66,11 +66,5 @@ else
     else
         echo "failed<br>"; 
  }
-// $sql_squadra="INSERT INTO squadre(id,nome_squadra) VALUES (NULL,'$squadra')";
-// $sql_squadra="IF NOT EXISTS(SELECT * FROM squadre WHERE nome_squadra='$squadra') 
-// BEGIN INSERT INTO squadre(id,nome_squadra) VALUES (NULL,'$squadra') END";
-// if(mysqli_query($conn,$sql_squadra) )
-//     echo "inserimento riuscito<br>";
-// else
-//     echo "inserimento fallito<br>";
+
 ?>
