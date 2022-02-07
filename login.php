@@ -9,19 +9,19 @@ if (!$conn)
     die('Could not connect');
 $username=$_POST['username'];
 $pwd=md5($_POST['password']);
-$sql="SELECT * FROM utenti WHERE username='$username' AND pass='$pwd'";
+$sql="SELECT * FROM utenti WHERE username='$username' AND password='$pwd'";
 $query=mysqli_query($conn, $sql);
-// if(!$query)
-// {
-    // printf("Error: %s\n", mysqli_error($conn));
-    // exit();
-// }
+ if(!$query)
+ {
+     printf("Error: %s\n", mysqli_error($conn));
+     exit();
+ }
 if(mysqli_fetch_array($query)!=null)
 {
     echo "login riuscito";
     $_SESSION['username']=$username;
     $_SESSION['password']=$pwd;
-    header("Location:logged.php");
+    header("Location:form_crea_utenti.html");
 }
     
 else
