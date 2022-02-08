@@ -18,6 +18,5 @@ if(mysqli_query($conn,$sql))
 else
     {echo"Connect failed: \n". mysqli_error($conn);
     exit();}
-// 1 è utente non loggato perché se mettono una stringa a caso sui permessi almeno non si arrabbia
-// 0 è super admin e 2 è admin nomrmale
+// 0 è non loggato,1 è admin,2 è superadmin
 ?>

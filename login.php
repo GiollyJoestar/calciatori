@@ -18,10 +18,15 @@ $query=mysqli_query($conn, $sql);
  }
 if(mysqli_fetch_array($query)!=null)
 {
+    while ($row = mysqli_fetch_array($query))
+    {
+        $permessi=$row[3];
+    }
     echo "login riuscito";
     $_SESSION['username']=$username;
     $_SESSION['password']=$pwd;
-    header("Location:form_crea_utenti.html");
+    $_SESSION['permessi']=intval($permessi);
+    header("Location:index.php");
 }
     
 else
