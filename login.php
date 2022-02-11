@@ -1,5 +1,4 @@
 <?php
-session_start();
 $servername = 'localhost';
 $username = 'root';
 $password = '';
@@ -17,15 +16,16 @@ $query=mysqli_query($conn, $sql);
      exit();
  }
 if(mysqli_fetch_array($query)!=null)
-{
-    while ($row = mysqli_fetch_array($query))
+{   session_start();
+    $query2=mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_array($query2))
     {
         $permessi=$row[3];
     }
     echo "login riuscito";
     $_SESSION['username']=$username;
     $_SESSION['password']=$pwd;
-    $_SESSION['permessi']=intval($permessi);
+    $_SESSION['permessi']=$permessi;
     header("Location:index.php");
 }
     

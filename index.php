@@ -24,11 +24,16 @@
         else
         {
             echo '<div class=" p-2 "><form action="logout.php"><button type="submit" class="btn btn-primary position-relative start-50 translate-middle">Logout</button></form></div>';
-            if($_SESSION['permessi']>0)
+            if($_SESSION['permessi']>=1)
             {
                 echo '<div class=" p-2 "><form action="inserisci_giocatori.html"><button type="submit" class="btn btn-primary position-relative start-50 translate-middle">Inserisci giocatori</button></form></div>';
                 echo '<div class=" p-2 "><form action="inserisci_squadre.html"><button type="submit" class="btn btn-primary position-relative start-50 translate-middle">Inserisci squadre</button></form></div>';
-            }           
+            } 
+            if($_SESSION['permessi']>1)
+            {
+                echo '<div class=" p-2 "><form action="collega_giocatori.html"><button type="submit" class="btn btn-primary position-relative start-50 translate-middle">Collega giocatori a squadre</button></form></div>';
+                echo '<div class=" p-2 "><form action="scollega_giocatori.html"><button type="submit" class="btn btn-primary position-relative start-50 translate-middle">Scollega giocatori a squadre</button></form></div>';
+            }          
         }      
         ?>       
     </body>
