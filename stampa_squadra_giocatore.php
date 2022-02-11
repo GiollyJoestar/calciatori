@@ -25,8 +25,9 @@ $dbname = 'calciatori';
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn)
     die('Could not connect');
-$squadra=strtolower($_POST['squadra']);
-$sql="SELECT calc.nome_calc,calc.cognome_calc,squadre.squadra FROM test_calciatore calc JOIN squadre ON squadre.id=calc.id_squadra WHERE squadre.squadra='$squadra'";
+$nome=strtolower($_POST['nome']);
+$cognome=strtolower($_POST['cognome']);
+$sql="SELECT calc.nome_calc,calc.cognome_calc,squadre.squadra FROM test_calciatore calc JOIN squadre ON squadre.id=calc.id_squadra WHERE calc.nome_calc='$nome' AND calc.cognome_calc='$cognome'";
 $query=mysqli_query($conn,$sql);
 while($row=mysqli_fetch_array($query))
 {
